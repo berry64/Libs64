@@ -86,6 +86,24 @@ public class Lib64FM {
         return false;
     }
 
+    public boolean createDirectory(File directory){
+        if(!directory.isDirectory())
+            return false;
+        if(!directory.exists())
+            directory.mkdirs();
+        return true;
+    }
+
+    public void deleteDirectory(File directory){
+        if(directory.exists()){
+            if(directory.isDirectory()){
+                for(File f : directory.listFiles())
+                    deleteDirectory(f);
+            } else
+                directory.delete();
+        }
+    }
+
     public boolean saveFile(File file, FileConfiguration yml){
         try {
             yml.save(file);

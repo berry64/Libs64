@@ -13,4 +13,5 @@ public class Libs64 {
     public Lib64FM getFileManager(){
         return new Lib64FM(pl);
     }
+    public static Lib64FM getFileManager(Plugin pl){return new Lib64FM(pl);}
 }
