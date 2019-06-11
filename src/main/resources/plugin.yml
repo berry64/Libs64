@@ -1,0 +1,10 @@
+main: net.berry64.libs64.Core
+name: Lib64
+author: berry64
+version: 1.0.0
+
+commands:
+  lib64:
+    description: Checks the version of lib64 installed
+    aliases:
+      - libs64
