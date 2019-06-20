@@ -11,6 +11,10 @@ public enum DataType {
 
     public static String uidSuffix="[l64uid]";
 
+
+    /**
+     * {@link java.sql.Types}
+     */
     public static DataType fromType(int type, String name){
         switch (type){
             case 4: return INT;
@@ -35,7 +39,7 @@ public enum DataType {
             case TEXT: return "TEXT";
             case UUID: return "VARCHAR(36)";
             case DOUBLE: return "DOUBLE";
-            case BOOLEAN: return "tinyint(1)";
+            case BOOLEAN: return "BOOLEAN";
             default: return "TEXT"; //defaults to text, will change
         }
     }

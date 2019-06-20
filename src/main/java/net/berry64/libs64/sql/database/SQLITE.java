@@ -14,8 +14,11 @@ public class SQLITE extends Lib64SQL {
     private final File file;
 
     public SQLITE(File file) {
-        super();
         this.file = file;
+        boolean exists = file.exists();
+        connection = createConnection();
+        if(exists)
+            loadFromExisting();
     }
 
     private String constructURL(){

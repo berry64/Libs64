@@ -101,7 +101,7 @@ public abstract class Lib64SQL {
         try {
             //Obtain tables
             DatabaseMetaData dbmeta = connection.getMetaData();
-            ResultSet rs = dbmeta.getTables(null, null, null, new String[]{"TABLES"});
+            ResultSet rs = dbmeta.getTables(null, null, null, new String[]{"TABLE"});
             while(rs.next())
                 tables.add(rs.getString("TABLE_NAME"));
             rs.close();
@@ -109,7 +109,7 @@ public abstract class Lib64SQL {
             //Obtain table details
             for(String tablename : tables){
                 Statement s = connection.createStatement();
-                rs = s.executeQuery("SELECT * FROM "+tablename);
+                rs = s.executeQuery("SELECT * FROM "+tablename + " LIMIT 1");
                 ResultSetMetaData rsMeta = rs.getMetaData();
                 int columnCount = rsMeta.getColumnCount();
 
@@ -148,7 +148,7 @@ public abstract class Lib64SQL {
     private void checkConnection() throws NullPointerException{
         try {
             if(connection == null)
-                createConnection();
+                connection = createConnection();
             if(connection != null && !connection.isClosed() && connection.isValid(10))
                 return;
         } catch (SQLException e) {
