@@ -15,10 +15,6 @@ public class SQLITE extends Lib64SQL {
 
     public SQLITE(File file) {
         this.file = file;
-        boolean exists = file.exists();
-        connection = createConnection();
-        if(exists)
-            loadFromExisting();
     }
 
     private String constructURL(){
@@ -26,13 +22,13 @@ public class SQLITE extends Lib64SQL {
     }
 
     @Override
-    protected Connection createConnection() {
+    protected Connection createConnection() throws SQLException{
         if (!file.getParentFile().exists())
             file.getParentFile().mkdirs();
         try {
             Class.forName(driverClass);
             return DriverManager.getConnection(constructURL());
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return null;
         }

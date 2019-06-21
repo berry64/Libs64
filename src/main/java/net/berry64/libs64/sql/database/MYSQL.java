@@ -29,7 +29,6 @@ public class MYSQL extends Lib64SQL {
         this.username = username;
         this.password = password;
         connection = createConnection();
-        loadFromExisting();
     }
 
     private String constructURL(){
