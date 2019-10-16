@@ -39,12 +39,9 @@ public abstract class ClassSerializable implements ConfigurationSerializable {
         Map<String, Object> ret = new HashMap<>();
         fields.forEach((key, field) -> {
             try {
-                boolean noaccess;
-                if (noaccess = !field.isAccessible())
+                if (!field.isAccessible())
                     field.setAccessible(true);
                 ret.put(key, field.get(this));
-                if (noaccess)
-                    field.setAccessible(false);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -60,12 +57,9 @@ public abstract class ClassSerializable implements ConfigurationSerializable {
             Object val = deserialize.get(key);
             if (val != null) {
                 try {
-                    boolean noaccess;
-                    if (noaccess = !field.isAccessible())
+                    if (!field.isAccessible())
                         field.setAccessible(true);
                     field.set(this, val);
-                    if (noaccess)
-                        field.setAccessible(false);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
