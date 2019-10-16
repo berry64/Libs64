@@ -2,29 +2,33 @@ package net.berry64.libs64.sql;
 
 import net.berry64.libs64.sql.database.MYSQL;
 import net.berry64.libs64.sql.database.SQLITE;
-import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+=======
+import java.sql.Connection;
+import java.sql.SQLException;
+>>>>>>> parent of 031a175... Update
 
 public abstract class Lib64SQL {
     protected Connection connection = null;
 
     protected abstract Connection createConnection() throws SQLException;
 
-    public static Lib64SQL createMySQL(String url, int port, String database, String username, String password) {
-        return new MYSQL(url, port, database, username, password);
+    public static Lib64SQL createMySQL(String url, int port,String database, String username, String password){
+        return new MYSQL(url, port,database, username, password);
     }
-
-    public static Lib64SQL createSQLite(File file) {
+    public static Lib64SQL createSQLite(File file){
         return new SQLITE(file);
     }
 
+<<<<<<< HEAD
     private class ModelData{
         private Class<? extends Model> clazz = null;
         private PreparedStatement insertStatement = null;
@@ -243,8 +247,12 @@ public abstract class Lib64SQL {
         return false;
     }
     private void checkConnection() {
+=======
+
+    private void checkConnection(){
+>>>>>>> parent of 031a175... Update
         try {
-            if (connection == null || connection.isClosed())
+            if(connection == null || connection.isClosed())
                 connection = createConnection();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -281,7 +289,7 @@ public abstract class Lib64SQL {
         }
         return o;
     }
-    private static class ConnectionFailedException extends RuntimeException {
+    private static class ConnectionFailedException extends RuntimeException{
         ConnectionFailedException(String message) {
             super(message);
         }
