@@ -4,17 +4,14 @@ import net.berry64.libs64.sql.database.MYSQL;
 import net.berry64.libs64.sql.database.SQLITE;
 
 import java.io.File;
-<<<<<<< HEAD
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-=======
 import java.sql.Connection;
 import java.sql.SQLException;
->>>>>>> parent of 031a175... Update
 
 public abstract class Lib64SQL {
     protected Connection connection = null;
@@ -28,7 +25,6 @@ public abstract class Lib64SQL {
         return new SQLITE(file);
     }
 
-<<<<<<< HEAD
     private class ModelData{
         private Class<? extends Model> clazz = null;
         private PreparedStatement insertStatement = null;
@@ -247,10 +243,8 @@ public abstract class Lib64SQL {
         return false;
     }
     private void checkConnection() {
-=======
 
     private void checkConnection(){
->>>>>>> parent of 031a175... Update
         try {
             if(connection == null || connection.isClosed())
                 connection = createConnection();
