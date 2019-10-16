@@ -2,6 +2,7 @@ package net.berry64.libs64.sql;
 
 import net.berry64.libs64.sql.database.MYSQL;
 import net.berry64.libs64.sql.database.SQLITE;
+import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -242,7 +243,6 @@ public abstract class Lib64SQL {
                 return true;
         return false;
     }
-    private void checkConnection() {
 
     private void checkConnection(){
         try {
