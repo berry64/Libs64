@@ -1,3 +1,8 @@
+/*============================
+ = Copyright (c) 2019. berry64
+ = All Rights Reserved
+ ===========================*/
+
 package net.berry64.libs64.sql.database;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;

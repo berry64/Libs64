@@ -1,3 +1,8 @@
+/*============================
+ = Copyright (c) 2019. berry64
+ = All Rights Reserved
+ ===========================*/
+
 package net.berry64.libs64;
 
 import net.berry64.libs64.utils.Lib64FM;
