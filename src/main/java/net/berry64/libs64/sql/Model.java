@@ -1,5 +1,7 @@
 package net.berry64.libs64.sql;
 
-public interface Model {
-
+public class Model {
+    public boolean update(){
+        return false;
+    }
 }
