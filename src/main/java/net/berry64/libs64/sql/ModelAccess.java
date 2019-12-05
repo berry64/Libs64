@@ -3,10 +3,7 @@
  = All Rights Reserved
  ===========================*/
 
-package net.berry64.libs64.sql.internal;
-
-import net.berry64.libs64.sql.DBData;
-import net.berry64.libs64.sql.Model;
+package net.berry64.libs64.sql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,10 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ModelAccess {
+class ModelAccess {
     private Lib64SQL sql;
 
-    public ModelAccess(Lib64SQL sql) {
+    ModelAccess(Lib64SQL sql) {
         this.sql = sql;
     }
 
@@ -48,10 +45,6 @@ public class ModelAccess {
         return ret;
     }
 
-    <E extends Model> boolean update(E m){
-        return m.update();
-    }
-
     public <E extends Model> E fetchOne(E incompleteModel){
         ModelData mdata = sql.getRegistry().get(incompleteModel.getClass());
         ResultSet rs = fetch(mdata, incompleteModel);
@@ -59,10 +52,15 @@ public class ModelAccess {
             return null;
 
         try {
-            if(rs.next())
-                return (E) ModelParser.constructModel(incompleteModel.getClass(), mdata, rs);
-            else
+            if(rs.next()) {
+                E model = (E) ModelParser.constructModel(incompleteModel.getClass(), mdata, rs);
+                rs.close();
+                return model;
+            }
+            else {
+                rs.close();
                 return null;
+            }
         } catch (SQLException | IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }

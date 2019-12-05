@@ -3,21 +3,20 @@
  = All Rights Reserved
  ===========================*/
 
-package net.berry64.libs64.sql.internal;
+package net.berry64.libs64.sql;
 
-import net.berry64.libs64.sql.internal.exceptions.ConnectionFailedException;
-
+import net.berry64.libs64.ConnectionFailedException;
 import java.sql.*;
 
-public class SQLOperation {
-    Connection connection = null;
+class SQLOperation {
+    public Connection connection = null;
     private Lib64SQL sql;
 
     public SQLOperation(Lib64SQL sql) {
         this.sql = sql;
     }
 
-    boolean checkConnection(){
+    public boolean checkConnection(){
         try {
             if(connection == null || connection.isClosed())
                 connection = sql.createConnection();

@@ -3,23 +3,20 @@
  = All Rights Reserved
  ===========================*/
 
-package net.berry64.libs64.sql.internal;
-
-import net.berry64.libs64.sql.DBData;
-import net.berry64.libs64.sql.Model;
+package net.berry64.libs64.sql;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ModelParser {
+class ModelParser {
 
     public static Object constructModel(Class<? extends Model> clazz, ModelData mdata, ResultSet input) throws IllegalAccessException, InstantiationException, SQLException {
         Object o = clazz.newInstance();
-        for(Field f : mdata.affectedColumns){
+        for (Field f : mdata.affectedColumns) {
             DBData fieldData = f.getAnnotation(DBData.class);
             String name;
-            if(fieldData == null || fieldData.name().isEmpty()){
+            if (fieldData == null || fieldData.name().isEmpty()) {
                 name = f.getName();
             } else {
                 name = fieldData.name();

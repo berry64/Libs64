@@ -3,22 +3,19 @@
  = All Rights Reserved
  ===========================*/
 
-package net.berry64.libs64.sql.internal;
+package net.berry64.libs64.sql;
 
-import net.berry64.libs64.sql.DBData;
-import net.berry64.libs64.sql.Model;
-import net.berry64.libs64.sql.internal.exceptions.ConnectionFailedException;
+import net.berry64.libs64.ConnectionFailedException;
 import org.bukkit.plugin.Plugin;
 
 import java.lang.reflect.Field;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ModelRegistry {
-    Map<Class<? extends Model>, ModelData> registry = new HashMap<>();
+class ModelRegistry {
+    public Map<Class<? extends Model>, ModelData> registry = new HashMap<>();
     Lib64SQL sql;
 
     public ModelRegistry(Lib64SQL sql) {

@@ -3,7 +3,7 @@
  = All Rights Reserved
  ===========================*/
 
-package net.berry64.libs64.sql.internal;
+package net.berry64.libs64.sql;
 
 import net.berry64.libs64.sql.Model;
 import org.bukkit.plugin.Plugin;
@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-public class ModelData {
+class ModelData {
     Class<? extends Model> clazz = null;
     PreparedStatement insertStatement = null;
     List<Field> affectedColumns = null;
