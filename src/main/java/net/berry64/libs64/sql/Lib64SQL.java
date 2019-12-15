@@ -10,11 +10,11 @@ import net.berry64.libs64.sql.database.SQLITE;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 public abstract class Lib64SQL {
     // static methods, I wish java had a header file?
@@ -28,11 +28,6 @@ public abstract class Lib64SQL {
 
     // Abstract definitions
     protected abstract Connection createConnection() throws SQLException;
-
-    // Methods
-    public Map<Class<? extends Model>, ModelData> getRegistry() {
-        return registry.registry;
-    }
 
     boolean checkConnection() {
         return modelSQL.checkConnection();
@@ -50,7 +45,7 @@ public abstract class Lib64SQL {
         return modelSQL.connection;
     }
 
-    PreparedStatement prepareStatement(String sql) {
+    public PreparedStatement prepareStatement(String sql) {
         return modelSQL.prepareStatement(sql);
     }
 
@@ -62,9 +57,24 @@ public abstract class Lib64SQL {
         return access.fetchOne(incompleteModel);
     }
 
+    public boolean isRegistered(Class<? extends Model> clazz){
+        return registry.isRegistered(clazz);
+    }
+
+    public boolean addRow(Model model) {
+        return registry.addRow(model);
+    }
+
+    public boolean update(Model model, List<Field> pivot){ return access.update(model, pivot);}
+    public boolean update(Model model, Field... pivot) {
+        return access.update(model, pivot);
+    }
+    public boolean update(Model model) {return access.update(model);}
+    public boolean update(Model model, String... fieldnames) {return access.update(model, fieldnames);}
 
     //Internal Handlers
     ModelAccess access = new ModelAccess(this);
-    public ModelRegistry registry = new ModelRegistry(this);
-    public SQLOperation modelSQL = new SQLOperation(this);
+    ModelRegistry registry = new ModelRegistry(this);
+    SQLOperation modelSQL = new SQLOperation(this);
+
 }

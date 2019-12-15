@@ -63,3 +63,10 @@ if you want to bundle Libs64 inside your jar so other people won't have to downl
     </plugins>
 </build>
 ```
+---
+##Libraries Used/Special Thanks to:
+- [sqlite-jdbc](https://github.com/xerial/sqlite-jdbc)
+- [c3p0](https://www.mchange.com/projects/c3p0/)
+- [mysql-connector-java](https://dev.mysql.com/downloads/connector/j/)
+- [spigot api](https://www.spigotmc.org/)
+- [objenesis](http://objenesis.org/)

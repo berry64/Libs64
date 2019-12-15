@@ -5,14 +5,25 @@
 
 package net.berry64.libs64.sql;
 
+import org.objenesis.ObjenesisStd;
+import org.objenesis.instantiator.ObjectInstantiator;
+
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 class ModelParser {
+    private static ObjenesisStd objenesis = new ObjenesisStd();
+    private static Map<Class<? extends Model>, ObjectInstantiator<?>> instantiators = new HashMap<>();
 
     public static Object constructModel(Class<? extends Model> clazz, ModelData mdata, ResultSet input) throws IllegalAccessException, InstantiationException, SQLException {
-        Object o = clazz.newInstance();
+        ObjectInstantiator<?> inst = instantiators.get(clazz);
+        if(inst == null)
+            instantiators.put(clazz, (inst=objenesis.getInstantiatorOf(clazz)));
+
+        Object o = inst.newInstance();
         for (Field f : mdata.affectedColumns) {
             DBData fieldData = f.getAnnotation(DBData.class);
             String name;

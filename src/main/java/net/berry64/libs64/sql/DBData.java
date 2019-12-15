@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface DBData {
     String name() default "";
-    DataType type() default DataType.TEXT;
+    DataType type();
     boolean PrimaryKey() default false;
     boolean NotNull() default false;
     String[] Tags() default {};
