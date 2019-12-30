@@ -5,8 +5,8 @@
 
 package net.berry64.libs64.lang;
 
-public class Lib64Translation {
-    public Lib64Translation(){
-
+public interface Lib64Translation {
+    default String _(String message){
+        return null;
     }
 }

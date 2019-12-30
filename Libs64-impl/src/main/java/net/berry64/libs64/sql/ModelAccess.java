@@ -213,6 +213,31 @@ class ModelAccess {
         return update(model, fields);
     }
 
+    public boolean delete(Model model) {
+        Object pivotVal = null;
+        ModelData mdata = sql.registry.getModelData(model.getClass());
+        for (Field f : mdata.affectedColumns)
+            if (f.getAnnotation(DBData.class).PrimaryKey())
+                try {
+                    pivotVal = f.get(model);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+
+        if (pivotVal == null)
+            throw new NullPointerException("Cannot delete a model with type" + model.getClass().getName() + " that has a primary key value of null");
+
+        try {
+            mdata.deleteStatement.setObject(1, pivotVal);
+            boolean ret =  mdata.deleteStatement.executeUpdate() > 0;
+            mdata.deleteStatement.clearParameters();
+            return ret;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     public static Field getField(Class<?> c, String name) {
         try {

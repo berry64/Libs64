@@ -29,6 +29,7 @@ public abstract class Lib64SQL {
     // Abstract definitions
     protected abstract Connection createConnection() throws SQLException;
 
+    //exported functions
     boolean checkConnection() {
         return modelSQL.checkConnection();
     }
@@ -57,7 +58,7 @@ public abstract class Lib64SQL {
         return access.fetchOne(incompleteModel);
     }
 
-    public boolean isRegistered(Class<? extends Model> clazz){
+    public boolean isRegistered(Class<? extends Model> clazz) {
         return registry.isRegistered(clazz);
     }
 
@@ -65,16 +66,28 @@ public abstract class Lib64SQL {
         return registry.addRow(model);
     }
 
-    public boolean update(Model model, List<Field> pivot){ return access.update(model, pivot);}
+    public boolean update(Model model, List<Field> pivot) {
+        return access.update(model, pivot);
+    }
+
     public boolean update(Model model, Field... pivot) {
         return access.update(model, pivot);
     }
-    public boolean update(Model model) {return access.update(model);}
-    public boolean update(Model model, String... fieldnames) {return access.update(model, fieldnames);}
+
+    public boolean update(Model model) {
+        return access.update(model);
+    }
+
+    public boolean update(Model model, String... fieldnames) {
+        return access.update(model, fieldnames);
+    }
+
+    public boolean delete(Model model) {
+        return access.delete(model);
+    }
 
     //Internal Handlers
     ModelAccess access = new ModelAccess(this);
     ModelRegistry registry = new ModelRegistry(this);
     SQLOperation modelSQL = new SQLOperation(this);
-
 }

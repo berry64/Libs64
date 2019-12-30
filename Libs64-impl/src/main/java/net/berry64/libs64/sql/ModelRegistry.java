@@ -9,7 +9,6 @@ import net.berry64.libs64.sql.database.SQLITE;
 import net.berry64.libs64.sql.exceptions.ConnectionFailedException;
 import net.berry64.libs64.sql.exceptions.InvalidModelException;
 import org.bukkit.plugin.Plugin;
-
 import java.lang.reflect.Field;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -168,30 +167,6 @@ class ModelRegistry {
         }
     }
 
-    public boolean delete(Model model) {
-        Object pivotVal = null;
-        ModelData mdata = getModelData(model.getClass());
-        for (Field f : mdata.affectedColumns)
-            if (f.getAnnotation(DBData.class).PrimaryKey())
-                try {
-                    pivotVal = f.get(model);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-
-        if (pivotVal == null)
-            throw new NullPointerException("Cannot delete a model with type" + model.getClass().getName() + " that has a primary key value of null");
-
-        try {
-            mdata.deleteStatement.setObject(1, pivotVal);
-            boolean ret =  mdata.deleteStatement.executeUpdate() > 0;
-            mdata.deleteStatement.clearParameters();
-            return ret;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     static String getDBDataName(Field field) {
         DBData data = field.getAnnotation(DBData.class);
