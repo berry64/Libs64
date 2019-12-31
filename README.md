@@ -26,7 +26,7 @@ simply include this in your pom.xml
 
 <dependencies>
         <dependency>
-            <groupId>net.berry64.libs64</groupId>
+            <groupId>net.berry64.net.berry64.libs64</groupId>
             <artifactId>Libs64</artifactId>
             <version>2.0-INTERNAL</version>
         </dependency>

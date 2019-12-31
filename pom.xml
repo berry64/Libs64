@@ -9,7 +9,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.berry64.libs64</groupId>
+    <groupId>net.berry64.net.berry64.libs64</groupId>
     <artifactId>Libs64</artifactId>
     <packaging>pom</packaging>
     <version>2.0-SNAPSHOT</version>
@@ -17,4 +17,20 @@
         <module>Libs64-impl</module>
         <module>Libs64-api</module>
     </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
