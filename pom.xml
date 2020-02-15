@@ -9,7 +9,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.berry64.net.berry64.libs64</groupId>
+    <groupId>net.berry64.libs64</groupId>
     <artifactId>Libs64</artifactId>
     <packaging>pom</packaging>
     <version>2.0-SNAPSHOT</version>
